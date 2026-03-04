@@ -7,6 +7,14 @@ import os
 import sys
 from datetime import datetime
 from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask import Flask, send_from_directory
+import os
+
+app = Flask(__name__, static_folder="../frontend/static")
+
+@app.route("/")
+def home():
+    return send_from_directory("../frontend", "index.html")
 
 sys.path.insert(0, os.path.dirname(__file__))
 from config import FLASK_PORT, FLASK_DEBUG, SECRET_KEY, status as config_status
